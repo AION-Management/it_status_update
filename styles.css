@@ -1,0 +1,180 @@
+/* General styling for the body */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Header styling */
+header {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+/* Main content styling */
+main {
+    padding: 20px;
+}
+
+/* Section heading styling */
+h2 {
+    color: #4CAF50;
+}
+
+/* CSS Grid container */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 equal columns per row*/
+    gap: 10px;  /* Gap between the columns */
+    margin: 20px;
+}
+
+/* For smaller screens, reduce to 2 columns */
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns per row */
+    }
+}
+
+/* For very small screens, reduce to 1 column */
+@media (max-width: 480px) {
+    .grid-container {
+        grid-template-columns: 1fr; /* 1 column per row */
+    }
+}
+
+/* Image styling */
+.grid-image {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+/* Dropdown container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown button styling */
+.dropbtn {
+    background-color: #bebebe;
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+/* Initially hide the dropdown content */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    left: 0;
+}
+
+/* Dropdown option items */
+.dropdown-content .option {
+    color: black;
+    padding: 12px 16px;
+    cursor: pointer;
+}
+
+/* Specific colors for each option */
+.greenStatus {
+    background-color: #99ff99; /* Light green */
+}
+.yellowStatus {
+    background-color: #fdff99; /* Light yellow */
+}
+.redStatus {
+    background-color: #ff9999; /* Light red */
+}
+
+/* Change background color on hover */
+.dropdown-content .option:hover {
+    opacity: 0.8; /* Slightly darken on hover */
+}
+
+/* Dropdown option items 
+.dropdown-content div {
+    color: black;
+    padding: 12px 16px;
+    cursor: pointer;
+} */
+
+/* Change background color on hover */
+.dropdown-content div:hover {
+    background-color: #ddd;
+}
+
+/* Show the dropdown content on hover or click */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Styling for each grid item */
+.grid-item {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border: 1px solid #ccc;
+    text-align: center;
+     /* Center the content */
+     display: flex;
+     flex-direction: column;  /* Align items vertically */
+     align-items: center;
+}
+
+/* Styling for the text box */
+textarea {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none;  /* Disable resizing */
+}
+
+/* Update button container */
+.update-container {
+    text-align: center;      /* Center the button */
+    margin-bottom: 20px;     /* Space between the button and the footer */
+}
+
+/* Update button styling */
+.update-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 30px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.update-btn:hover {
+    background-color: #45a049;
+}
+
+/* Footer styling */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}

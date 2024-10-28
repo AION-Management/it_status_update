@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Webpage</title>
+    <!-- Link to CSS file -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>Aion IT Webpage</h1>
+    </header>
+
+    <!-- Main Content Section -->
+    <main>
+        <section>
+            <h2></h2>
+            <p></p>
+        </section>
+        <div class="grid-container">
+            <div class="grid-item">
+                <!-- <img src="image1.jpg" alt="Image 1" class="grid-image"> -->
+                <p>RealPage</p>
+                <div class="dropdown">
+                    <button class="dropbtn" id="realpage-status" onclick="toggleDropdown(event)">Select a Status</button>
+                    <div class="dropdown-content">
+                        <div class="option greenStatus" onclick="selectOption(this, 'realpage-status')">Green</div>
+                        <div class="option yellowStatus" onclick="selectOption(this, 'realpage-status')">Yellow</div>
+                        <div class="option redStatus" onclick="selectOption(this, 'realpage-status')">Red</div>
+                    </div>
+                </div>
+                <textarea id="realpage-text" placeholder="Status Update"></textarea>
+            </div>
+
+            <div class="grid-item">
+                <!-- <img src="image1.jpg" alt="Image 1" class="grid-image"> -->
+                <p>Grace Hill</p>
+                <div class="dropdown">
+                    <button class="dropbtn" id="gracehill-status" onclick="toggleDropdown(event)">Select a Status</button>
+                    <div class="dropdown-content">
+                        <div class="option greenStatus" onclick="selectOption(this, 'gracehill-status')">Green</div>
+                        <div class="option yellowStatus" onclick="selectOption(this, 'gracehill-status')">Yellow</div>
+                        <div class="option redStatus" onclick="selectOption(this, 'gracehill-status')">Red</div>
+                    </div>
+                </div>
+                <textarea id="gracehill-text" placeholder="Status Update"></textarea>
+            </div>
+
+            <div class="grid-item">
+                <!-- <img src="image1.jpg" alt="Image 1" class="grid-image"> -->
+                <p>Outlook</p>
+                <div class="dropdown">
+                    <button class="dropbtn" id="outlook-status" onclick="toggleDropdown(event)">Select a Status</button>
+                    <div class="dropdown-content">
+                        <div class="option greenStatus" onclick="selectOption(this, 'outlook-status')">Green</div>
+                        <div class="option yellowStatus" onclick="selectOption(this, 'outlook-status')">Yellow</div>
+                        <div class="option redStatus" onclick="selectOption(this, 'outlook-status')">Red</div>
+                    </div>
+                </div>
+                <textarea id="outlook-text" placeholder="Status Update"></textarea>
+            </div>
+
+            <div class="grid-item">
+                <!-- <img src="image1.jpg" alt="Image 1" class="grid-image"> -->
+                <p>Ticket System</p>
+                <div class="dropdown">
+                    <button class="dropbtn" id="ticket-status" onclick="toggleDropdown(event)">Select a Status</button>
+                    <div class="dropdown-content">
+                        <div class="option greenStatus" onclick="selectOption(this, 'ticket-status')">Green</div>
+                        <div class="option yellowStatus" onclick="selectOption(this, 'ticket-status')">Yellow</div>
+                        <div class="option redStatus" onclick="selectOption(this, 'ticket-status')">Red</div>
+                    </div>
+                </div>
+                <textarea id="ticket-text" placeholder="Status Update"></textarea>
+            </div>
+        </div>
+        <script src="scripts.js"></script>
+        <div class="update-container">
+            <button class="update-btn" onclick="submitStatusUpdates(event)">Submit</button>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy;Aion IT Webpage</p>
+    </footer>
+    
+</body>
+</html>
