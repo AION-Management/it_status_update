@@ -1,4 +1,3 @@
-
 // Function to retrieve query string parameters
 function getQueryParams() {
     const params = new URLSearchParams(window.location.search);
@@ -14,6 +13,8 @@ function getQueryParams() {
     };
 }
 
+
+
 function displayStatusUpdates() {
     // Retrieve data from localStorage
     const statusUpdates = JSON.parse(localStorage.getItem('statusUpdates'));
@@ -23,20 +24,37 @@ function displayStatusUpdates() {
         return;
     }
 
+    // Function to determine color based on status
+    function getStatusColor(status) {
+        switch (status.toLowerCase()) {
+            case "green":
+                return "#99ff99";
+            case "yellow":
+                return "#fdff99";
+            case "red":
+                return "#ff9999";
+            default:
+                return "white"; // Default color if status doesn't match
+        }   
+    }
+
     const statusContainer = document.getElementById('status-container');
     statusContainer.innerHTML = `
-        <h2>RealPage</h2>
-        <p><strong>Status:</strong> ${statusUpdates.realpageStatus}</p>
-        <p><strong>Message:</strong> ${statusUpdates.realpageText}</p>
-        <h2>Grace Hill</h2>
-        <p><strong>Status:</strong> ${statusUpdates.gracehillStatus}</p>
-        <p><strong>Message:</strong> ${statusUpdates.gracehillText}</p>
-        <h2>Outlook</h2>
-        <p><strong>Status:</strong> ${statusUpdates.outlookStatus}</p>
-        <p><strong>Message:</strong> ${statusUpdates.outlookText}</p>
-        <h2>Ticket System</h2>
-        <p><strong>Status:</strong> ${statusUpdates.ticketStatus}</p>
-        <p><strong>Message:</strong> ${statusUpdates.ticketText}</p>
+        <h2 style="color: white;">RealPage</h2>
+        <p style="color: #b4b4b4;"><strong>Status:</strong> <span style="color: ${getStatusColor(statusUpdates.realpageStatus)};">${statusUpdates.realpageStatus}</span></p>
+        <p style="color: #b4b4b4;"><strong>Message:</strong> <span style="color: white;">${statusUpdates.realpageText}</span></p>
+        
+        <h2 style="color: white;">Grace Hill</h2>
+        <p style="color: #b4b4b4;"><strong>Status:</strong> <span style="color: ${getStatusColor(statusUpdates.gracehillStatus)};">${statusUpdates.gracehillStatus}</span></p>
+        <p style="color: #b4b4b4;"><strong>Message:</strong> <span style="color: white;">${statusUpdates.gracehillText}</span></p>
+        
+        <h2 style="color: white;">Outlook</h2>
+        <p style="color: #b4b4b4;"><strong>Status:</strong> <span style="color: ${getStatusColor(statusUpdates.outlookStatus)};">${statusUpdates.outlookStatus}</span></p>
+        <p style="color: #b4b4b4;"><strong>Message:</strong> <span style="color: white;">${statusUpdates.outlookText}</span></p>
+        
+        <h2 style="color: white;">Ticket System</h2>
+        <p style="color: #b4b4b4;"><strong>Status:</strong> <span style="color: ${getStatusColor(statusUpdates.ticketStatus)};">${statusUpdates.ticketStatus}</span></p>
+        <p style="color: #b4b4b4;"><strong>Message:</strong> <span style="color: white;">${statusUpdates.ticketText}</span></p>
     `;
 }
 
