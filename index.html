@@ -10,7 +10,7 @@
 <body>
     <!-- Header Section -->
     <header>
-        <h1>Aion IT Webpage</h1>
+        <img src="logo.png" alt="Aion Logo" class="header-image">
     </header>
 
     <!-- Main Content Section -->
@@ -49,7 +49,7 @@
             </div>
 
             <div class="grid-item">
-                <!-- <img src="image1.jpg" alt="Image 1" class="grid-image"> -->
+                <!--<img src="outlook.jpg" alt="Outlook Logo" class="image">-->
                 <p>Outlook</p>
                 <div class="dropdown">
                     <button class="dropbtn" id="outlook-status" onclick="toggleDropdown(event)">Select a Status</button>
@@ -63,7 +63,7 @@
             </div>
 
             <div class="grid-item">
-                <!-- <img src="image1.jpg" alt="Image 1" class="grid-image"> -->
+                <img src="ticketSystem.png" alt="Ticketing System Logo" class="ts-image">
                 <p>Ticket System</p>
                 <div class="dropdown">
                     <button class="dropbtn" id="ticket-status" onclick="toggleDropdown(event)">Select a Status</button>
@@ -76,16 +76,12 @@
                 <textarea id="ticket-text" placeholder="Status Update"></textarea>
             </div>
         </div>
+        <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-database.js"></script>
         <script src="scripts.js"></script>
         <div class="update-container">
             <button class="update-btn" onclick="submitStatusUpdates(event)">Submit</button>
         </div>
     </main>
-
-    <!-- Footer Section -->
-    <footer>
-        <p>&copy;Aion IT Webpage</p>
-    </footer>
-    
 </body>
 </html>
