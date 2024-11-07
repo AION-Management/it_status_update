@@ -1,6 +1,6 @@
 // Import Firebase SDK
-//import { initializeApp } from "firebase/app";
-//import { getDatabase } from "firebase/database";
+import { initializeApp } from "firebase/app";
+import { getDatabase } from "firebase/database";
 
 // Your Firebase configuration
 const firebaseConfig = {
