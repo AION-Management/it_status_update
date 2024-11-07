@@ -12,16 +12,34 @@
     </header>
 
     <main>
+        <h1>Status Updates</h1>
         <div id="status-container">
-            
+            <div>
+                <h2>RealPage</h2>
+                <p>Status: <span id="realpage-status-display">Loading...</span></p>
+                <p>Message: <span id="realpage-text-display">Loading...</span></p>
+            </div>
+            <div>
+                <h2>Grace Hill</h2>
+                <p>Status: <span id="gracehill-status-display">Loading...</span></p>
+                <p>Message: <span id="gracehill-text-display">Loading...</span></p>
+            </div>
+            <div>
+                <h2>Outlook</h2>
+                <p>Status: <span id="outlook-status-display">Loading...</span></p>
+                <p>Message: <span id="outlook-text-display">Loading...</span></p>
+            </div>
+            <div>
+                <h2>Ticket System</h2>
+                <p>Status: <span id="ticket-status-display">Loading...</span></p>
+                <p>Message: <span id="ticket-text-display">Loading...</span></p>
+            </div>
         </div>
     </main>
-
-    <footer>
-        <p>&copy; Aion IT Webpage</p>
-    </footer>
+    
     <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-database.js"></script>
+    <script type="module" src="firebaseConfig.js"></script>
     <script src="display.js"></script>
 </body>
 </html>
