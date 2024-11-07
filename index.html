@@ -24,11 +24,11 @@
                 <!-- <img src="image1.jpg" alt="Image 1" class="grid-image"> -->
                 <p>RealPage</p>
                 <div class="dropdown">
-                    <button class="dropbtn" id="realpage-status" onclick="toggleDropdown(event)">Select a Status</button>
+                    <button class="dropbtn" id="realpage-status">Select a Status</button>
                     <div class="dropdown-content">
-                        <div class="option greenStatus" onclick="selectOption(this, 'realpage-status')">Green</div>
-                        <div class="option yellowStatus" onclick="selectOption(this, 'realpage-status')">Yellow</div>
-                        <div class="option redStatus" onclick="selectOption(this, 'realpage-status')">Red</div>
+                        <div class="option greenStatus">Green</div>
+                        <div class="option yellowStatus">Yellow</div>
+                        <div class="option redStatus">Red</div>
                     </div>
                 </div>
                 <textarea id="realpage-text" placeholder="Status Update"></textarea>
@@ -38,11 +38,11 @@
                 <!-- <img src="image1.jpg" alt="Image 1" class="grid-image"> -->
                 <p>Grace Hill</p>
                 <div class="dropdown">
-                    <button class="dropbtn" id="gracehill-status" onclick="toggleDropdown(event)">Select a Status</button>
+                    <button class="dropbtn" id="gracehill-status">Select a Status</button>
                     <div class="dropdown-content">
-                        <div class="option greenStatus" onclick="selectOption(this, 'gracehill-status')">Green</div>
-                        <div class="option yellowStatus" onclick="selectOption(this, 'gracehill-status')">Yellow</div>
-                        <div class="option redStatus" onclick="selectOption(this, 'gracehill-status')">Red</div>
+                        <div class="option greenStatus">Green</div>
+                        <div class="option yellowStatus" >Yellow</div>
+                        <div class="option redStatus" >Red</div>
                     </div>
                 </div>
                 <textarea id="gracehill-text" placeholder="Status Update"></textarea>
@@ -52,11 +52,11 @@
                 <!--<img src="outlook.jpg" alt="Outlook Logo" class="image">-->
                 <p>Outlook</p>
                 <div class="dropdown">
-                    <button class="dropbtn" id="outlook-status" onclick="toggleDropdown(event)">Select a Status</button>
+                    <button class="dropbtn" id="outlook-status">Select a Status</button>
                     <div class="dropdown-content">
-                        <div class="option greenStatus" onclick="selectOption(this, 'outlook-status')">Green</div>
-                        <div class="option yellowStatus" onclick="selectOption(this, 'outlook-status')">Yellow</div>
-                        <div class="option redStatus" onclick="selectOption(this, 'outlook-status')">Red</div>
+                        <div class="option greenStatus">Green</div>
+                        <div class="option yellowStatus">Yellow</div>
+                        <div class="option redStatus">Red</div>
                     </div>
                 </div>
                 <textarea id="outlook-text" placeholder="Status Update"></textarea>
@@ -66,22 +66,23 @@
                 <img src="ticketSystem.png" alt="Ticketing System Logo" class="ts-image">
                 <p>Ticket System</p>
                 <div class="dropdown">
-                    <button class="dropbtn" id="ticket-status" onclick="toggleDropdown(event)">Select a Status</button>
+                    <button class="dropbtn" id="ticket-status">Select a Status</button>
                     <div class="dropdown-content">
-                        <div class="option greenStatus" onclick="selectOption(this, 'ticket-status')">Green</div>
-                        <div class="option yellowStatus" onclick="selectOption(this, 'ticket-status')">Yellow</div>
-                        <div class="option redStatus" onclick="selectOption(this, 'ticket-status')">Red</div>
+                        <div class="option greenStatus">Green</div>
+                        <div class="option yellowStatus">Yellow</div>
+                        <div class="option redStatus">Red</div>
                     </div>
                 </div>
                 <textarea id="ticket-text" placeholder="Status Update"></textarea>
             </div>
         </div>
-        <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-database.js"></script>
-        <script src="scripts.js"></script>
         <div class="update-container">
-            <button class="update-btn" onclick="submitStatusUpdates(event)">Submit</button>
+            <button type="button" class="update-btn">Submit</button>
         </div>
     </main>
+    <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-database.js"></script>
+    <script type="module" src="firebaseConfig.js"></script>
+    <script type="module" src="scripts.js"></script>
 </body>
 </html>
