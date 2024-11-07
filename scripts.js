@@ -1,23 +1,4 @@
-/*
-import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set } from "firebase/database";
-
-const firebaseConfig = {
-    apiKey: "AIzaSyAt_UgVnzRq-E-9MrUj02Cyupy_mL1Gfa0",
-    authDomain: "status-update-c5a72.firebaseapp.com",
-    databaseURL: "https://status-update-c5a72-default-rtdb.firebaseio.com",
-    projectId: "status-update-c5a72",
-    storageBucket: "status-update-c5a72.appspot.com",
-    messagingSenderId: "706934655596",
-    appId: "1:706934655596:web:25c622f2d93e6648e72649",
-    measurementId: "G-FF3BKTGF69"
-};
-  
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const database = getDatabase(app);
-*/
-
+import { writeUserData } from "./firebaseService.js";
 
 // Toggle the dropdown visibility on click
 function toggleDropdown(event) {
@@ -29,8 +10,11 @@ function toggleDropdown(event) {
 
 // Function to handle option selection and update the button text and color
 function selectOption(option, statusId) {
-    var dropdown = option.closest('.dropdown');
-    var button = dropdown.querySelector('.dropbtn');
+    console.log("Option selected:", option.textContent);
+    const dropdown = option.closest('.dropdown');
+    const button = dropdown.querySelector('.dropbtn');
+
+    console.log("Updating button text to:", option.textContent);
     button.textContent = option.textContent;
     button.className = `dropbtn ${option.className}`;  // Set the background color class
     dropdown.querySelector('.dropdown-content').style.display = 'none';  // Hide dropdown
@@ -47,17 +31,6 @@ window.onclick = function(event) {
     });
 };
 
-/*
-function writeUserData(app, status, errormsg) {
-    const db = getDatabase();
-    const dbRef = ref(db, 'users/' + app); // Specify path for data
-    set(dbRef, {
-        app: app,
-        status: status,
-        errormsg: errormsg
-    });
-} */
-
 function submitStatusUpdates(event) {
     event.preventDefault();
         
@@ -73,13 +46,39 @@ function submitStatusUpdates(event) {
     };
     
     // Store the status updates in localStorage
-    localStorage.setItem('statusUpdates', JSON.stringify(statusUpdates));
+    //localStorage.setItem('statusUpdates', JSON.stringify(statusUpdates));
 
-    // Write each entry to the database
-    //writeUserData('realpage', statusUpdates.realpageStatus, statusUpdates.realpageText);
-    //writeUserData('gracehill', statusUpdates.gracehillStatus, statusUpdates.gracehillText);
-    //writeUserData('outlook', statusUpdates.outlookStatus, statusUpdates.outlookText);
-    //writeUserData('ticket', statusUpdates.ticketStatus, statusUpdates.ticketText);
+    // Write each entry to Firebase
+    writeUserData('realpage', statusUpdates.realpageStatus, statusUpdates.realpageText);
+    writeUserData('gracehill', statusUpdates.gracehillStatus, statusUpdates.gracehillText);
+    writeUserData('outlook', statusUpdates.outlookStatus, statusUpdates.outlookText);
+    writeUserData('ticket', statusUpdates.ticketStatus, statusUpdates.ticketText);
 
     alert('Status updates saved successfully!');
 }
+
+window.toggleDropdown = toggleDropdown;
+window.selectOption = selectOption;
+window.submitStatusUpdates = submitStatusUpdates;
+
+// Add event listeners once the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Attach event listener to all dropdown buttons
+    const dropdownButtons = document.querySelectorAll('.dropbtn');
+    dropdownButtons.forEach(button => {
+        button.addEventListener('click', toggleDropdown);
+    });
+
+    // Attach event listener to all dropdown options
+    const dropdownOptions = document.querySelectorAll('.dropdown-content .option');
+    dropdownOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            const statusId = option.closest('.grid-item').querySelector('.dropbtn').id;
+            selectOption(option, statusId);
+        });
+    });
+
+    // Attach event listener to the submit button
+    const submitButton = document.querySelector('.update-btn');
+    submitButton.addEventListener('click', submitStatusUpdates);
+});
