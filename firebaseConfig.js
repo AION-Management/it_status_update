@@ -1,5 +1,4 @@
 // Your Firebase configuration
-/*
 const firebaseConfig = {
   apiKey: "AIzaSyAt_UgVnzRq-E-9MrUj02Cyupy_mL1Gfa0",
   authDomain: "status-update-c5a72.firebaseapp.com",
@@ -14,13 +13,16 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 
-//export { app, database }; */
+//export { app, database }; 
 
-var admin = require("firebase-admin");
 
-var serviceAccount = require("path/to/serviceAccountKey.json");
+/*
+import { initializeApp, credential as _credential } from "firebase-admin";
 
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
+import serviceAccount from "path/to/serviceAccountKey.json";
+
+initializeApp({
+  credential: _credential.cert(serviceAccount),
   databaseURL: "https://status-update-c5a72-default-rtdb.firebaseio.com"
 });
+*/
