@@ -22,12 +22,18 @@ function selectOption(option, statusId) {
     // Update the status for saving purposes
     document.getElementById(statusId).innerText = option.textContent;
 }
-
+/*
 // Close dropdown if clicked outside
 window.onclick = function(event) {
-    var dropdowns = document.querySelectorAll('.dropdown-content');  // Find all dropdown content sections
+    const dropdowns = document.querySelectorAll('.dropdown-content');  // Find all dropdown content sections
     dropdowns.forEach(function(dropdown) {
         dropdown.style.display = 'none';  // Close all open dropdowns if clicked outside
+    });
+}; */
+// Close dropdown if clicked outside
+window.onclick = function(event) {
+    document.querySelectorAll('.dropdown-content').forEach(dropdown => {
+        dropdown.style.display = 'none';
     });
 };
 
