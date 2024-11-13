@@ -15,3 +15,4 @@ function getStatusUpdates(app, callback) {
         callback(data);
     });
 }
+export { writeUserData, getStatusUpdates };
