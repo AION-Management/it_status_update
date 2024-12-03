@@ -42,7 +42,7 @@ function displayStatusUpdates() {
 } */
 function displayStatusUpdates() {
     const applications = ['realpage', 'gracehill', 'outlook', 'ticket'];
-    
+
     applications.forEach(appId => {
         getStatusUpdates(appId, (data) => {
             if (data) {
