@@ -2,6 +2,7 @@
 const firebaseConfig = {
   apiKey: "AIzaSyBg8do0VhMZqs0gxO0ByVcFmFZGx0FQSss",
   authDomain: "status-update-1db17.firebaseapp.com",
+  databaseURL: "https://status-update-1db17-default-rtdb.firebaseio.com",
   projectId: "status-update-1db17",
   storageBucket: "status-update-1db17.firebasestorage.app",
   messagingSenderId: "265169144140",
