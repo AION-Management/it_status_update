@@ -2,7 +2,6 @@ import { writeUserData } from "./firebaseService.js";
 
 // Toggle the dropdown visibility on click
 function toggleDropdown(event) {
-    console.log("Dropdown toggled");  // For debugging
     event.stopPropagation();  // Prevent the dropdown from closing immediately
     var dropdown = event.target.nextElementSibling;  // Get the next sibling which is the dropdown content
     dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';  // Toggle visibility
@@ -10,11 +9,9 @@ function toggleDropdown(event) {
 
 // Function to handle option selection and update the button text and color
 function selectOption(option, statusId) {
-    console.log("Option selected:", option.textContent);
     const dropdown = option.closest('.dropdown');
     const button = dropdown.querySelector('.dropbtn');
 
-    console.log("Updating button text to:", option.textContent);
     button.textContent = option.textContent;
     button.className = `dropbtn ${option.className}`;  // Set the background color class
     dropdown.querySelector('.dropdown-content').style.display = 'none';  // Hide dropdown
