@@ -22,14 +22,6 @@ function selectOption(option, statusId) {
     // Update the status for saving purposes
     document.getElementById(statusId).innerText = option.textContent;
 }
-/*
-// Close dropdown if clicked outside
-window.onclick = function(event) {
-    const dropdowns = document.querySelectorAll('.dropdown-content');  // Find all dropdown content sections
-    dropdowns.forEach(function(dropdown) {
-        dropdown.style.display = 'none';  // Close all open dropdowns if clicked outside
-    });
-}; */
 // Close dropdown if clicked outside
 window.onclick = function(event) {
     document.querySelectorAll('.dropdown-content').forEach(dropdown => {
@@ -50,9 +42,6 @@ function submitStatusUpdates(event) {
         ticketStatus: document.getElementById('ticket-status').textContent,
         ticketText: document.getElementById('ticket-text').value
     };
-    
-    // Store the status updates in localStorage
-    //localStorage.setItem('statusUpdates', JSON.stringify(statusUpdates));
 
     // Write each entry to Firebase
     writeUserData('realpage', statusUpdates.realpageStatus, statusUpdates.realpageText);
