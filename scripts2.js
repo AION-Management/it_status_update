@@ -63,13 +63,8 @@ function submitStatusUpdates(event) {
         const statusKey = `${key}Status`;
         const textKey = `${key}Text`;
 
-        // Validation: Prevent "Select a Status" or empty messages from being saved
-        if (data.status === "Select a Status") {
-            //alert(`Please select a valid status for ${key}.`);
-            continue;
-        }
-        if (data.text.trim() === "") {
-            //alert(`Please enter a message for ${key}.`);
+        // Skip invalid data
+        if (data.status === "Select a Status" || data.text.trim() === "") {
             continue;
         }
 
@@ -83,8 +78,10 @@ function submitStatusUpdates(event) {
         }
     }
 
-    alert('Valid status updates saved successfully!');
+    // Optionally show success feedback
+    alert('Valid status updates saved successfully.');
 }
+
 
 
 // Initialize lastSavedData on page load
