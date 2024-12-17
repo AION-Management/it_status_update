@@ -65,11 +65,11 @@ function submitStatusUpdates(event) {
 
         // Validation: Prevent "Select a Status" or empty messages from being saved
         if (data.status === "Select a Status") {
-            alert(`Please select a valid status for ${key}.`);
+            //alert(`Please select a valid status for ${key}.`);
             continue;
         }
         if (data.text.trim() === "") {
-            alert(`Please enter a message for ${key}.`);
+            //alert(`Please enter a message for ${key}.`);
             continue;
         }
 
