@@ -79,7 +79,7 @@ function submitStatusUpdates(event) {
     }
 
     // Optionally show success feedback
-    alert('Valid status updates saved successfully.');
+    //alert('Valid status updates saved successfully.');
 }
 
 
