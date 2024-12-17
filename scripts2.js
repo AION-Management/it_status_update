@@ -63,12 +63,13 @@ function submitStatusUpdates(event) {
         const statusKey = `${key}Status`;
         const textKey = `${key}Text`;
 
-        // Skip invalid data
+        // Skip if status is "Select a Status" or text is empty
         if (data.status === "Select a Status" || data.text.trim() === "") {
+            console.log(`Skipping ${key} due to invalid status or empty text.`);
             continue;
         }
 
-        // Update Firebase if there's a change
+        // Only write to Firebase if the value has changed
         if (hasChanged(statusKey, data.status) || hasChanged(textKey, data.text)) {
             writeUserData(key, data.status, data.text);
 
@@ -78,9 +79,10 @@ function submitStatusUpdates(event) {
         }
     }
 
-    // Optionally show success feedback
-    //alert('Valid status updates saved successfully.');
+    // Optionally show success feedback (no alert if some fields are skipped)
+    console.log('Valid updates saved successfully.');
 }
+
 
 
 
