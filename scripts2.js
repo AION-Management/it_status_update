@@ -80,7 +80,7 @@ function submitStatusUpdates(event) {
     }
 
     // Optionally show success feedback (no alert if some fields are skipped)
-    console.log('Valid updates saved successfully.');
+    alert('Valid updates saved successfully.');
 }
 
 
