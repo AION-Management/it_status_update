@@ -36,15 +36,15 @@ function submitStatusUpdates(event) {
         gracehillText: document.getElementById('gracehill-text').value,
         outlookStatus: document.getElementById('outlook-status').textContent,
         outlookText: document.getElementById('outlook-text').value,
-        ticketStatus: document.getElementById('ticket-status').textContent,
-        ticketText: document.getElementById('ticket-text').value
+        missionControlStatus: document.getElementById('missionControl-status').textContent,
+        missionControlText: document.getElementById('missionControl-text').value
     };
 
     // Write each entry to Firebase
     writeUserData('realpage', statusUpdates.realpageStatus, statusUpdates.realpageText);
     writeUserData('gracehill', statusUpdates.gracehillStatus, statusUpdates.gracehillText);
     writeUserData('outlook', statusUpdates.outlookStatus, statusUpdates.outlookText);
-    writeUserData('ticket', statusUpdates.ticketStatus, statusUpdates.ticketText);
+    writeUserData('missionControl', statusUpdates.missionControlStatus, statusUpdates.missionControlText);
 
     alert('Status updates saved successfully!');
 }
