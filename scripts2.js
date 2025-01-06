@@ -53,8 +53,8 @@ function submitStatusUpdates(event) {
             text: document.getElementById('outlook-text').value
         },
         missionControl: {
-            status: document.getElementById('mc-status').textContent,
-            text: document.getElementById('mc-text').value
+            status: document.getElementById('missionControl-status').textContent,
+            text: document.getElementById('missionControl-text').value
         }
     };
 
@@ -102,8 +102,8 @@ document.addEventListener('DOMContentLoaded', function () {
             text: document.getElementById('outlook-text').value
         },
         missionControl: {
-            status: document.getElementById('mc-status').textContent,
-            text: document.getElementById('mc-text').value
+            status: document.getElementById('missionControl-status').textContent,
+            text: document.getElementById('missionControl-text').value
         }
     };
 
