@@ -1,10 +1,18 @@
 import { writeUserData } from "./firebaseService.js";
 
+// Object to track the last saved data
+const lastSavedData = {};
+
+// Function to check if a value has changed
+function hasChanged(key, newValue) {
+    return lastSavedData[key] !== newValue;
+}
+
 // Toggle the dropdown visibility on click
 function toggleDropdown(event) {
-    event.stopPropagation();  // Prevent the dropdown from closing immediately
-    var dropdown = event.target.nextElementSibling;  // Get the next sibling which is the dropdown content
-    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';  // Toggle visibility
+    event.stopPropagation(); // Prevent the dropdown from closing immediately
+    const dropdown = event.target.nextElementSibling; // Get the next sibling which is the dropdown content
+    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block'; // Toggle visibility
 }
 
 // Function to handle option selection and update the button text and color
@@ -13,14 +21,15 @@ function selectOption(option, statusId) {
     const button = dropdown.querySelector('.dropbtn');
 
     button.textContent = option.textContent;
-    button.className = `dropbtn ${option.className}`;  // Set the background color class
-    dropdown.querySelector('.dropdown-content').style.display = 'none';  // Hide dropdown
+    button.className = `dropbtn ${option.className}`; // Set the background color class
+    dropdown.querySelector('.dropdown-content').style.display = 'none'; // Hide dropdown
 
     // Update the status for saving purposes
     document.getElementById(statusId).innerText = option.textContent;
 }
+
 // Close dropdown if clicked outside
-window.onclick = function(event) {
+window.onclick = function (event) {
     document.querySelectorAll('.dropdown-content').forEach(dropdown => {
         dropdown.style.display = 'none';
     });
@@ -28,33 +37,82 @@ window.onclick = function(event) {
 
 function submitStatusUpdates(event) {
     event.preventDefault();
-        
+
+    // Get current status updates
     const statusUpdates = {
-        realpageStatus: document.getElementById('realpage-status').textContent,
-        realpageText: document.getElementById('realpage-text').value,
-        gracehillStatus: document.getElementById('gracehill-status').textContent,
-        gracehillText: document.getElementById('gracehill-text').value,
-        outlookStatus: document.getElementById('outlook-status').textContent,
-        outlookText: document.getElementById('outlook-text').value,
-        missionControlStatus: document.getElementById('missionControl-status').textContent,
-        missionControlText: document.getElementById('missionControl-text').value
+        realpage: {
+            status: document.getElementById('realpage-status').textContent,
+            text: document.getElementById('realpage-text').value
+        },
+        ticket: {
+            status: document.getElementById('ticket-status').textContent,
+            text: document.getElementById('ticket-text').value
+        },
+        outlook: {
+            status: document.getElementById('outlook-status').textContent,
+            text: document.getElementById('outlook-text').value
+        },
+        missionControl: {
+            status: document.getElementById('missionControl-status').textContent,
+            text: document.getElementById('missionControl-text').value
+        }
     };
 
-    // Write each entry to Firebase
-    writeUserData('realpage', statusUpdates.realpageStatus, statusUpdates.realpageText);
-    writeUserData('gracehill', statusUpdates.gracehillStatus, statusUpdates.gracehillText);
-    writeUserData('outlook', statusUpdates.outlookStatus, statusUpdates.outlookText);
-    writeUserData('missionControl', statusUpdates.missionControlStatus, statusUpdates.missionControlText);
+    // Iterate over each application and write only valid and changed data
+    for (const [key, data] of Object.entries(statusUpdates)) {
+        const statusKey = `${key}Status`;
+        const textKey = `${key}Text`;
 
-    alert('Status updates saved successfully!');
+        // Validation: Prevent "Select a Status" or empty messages from being saved
+        if (data.status === "Select a Status") {
+            alert(`Please select a valid status for ${key}.`);
+            continue;
+        }
+        if (data.text.trim() === "") {
+            alert(`Please enter a message for ${key}.`);
+            continue;
+        }
+
+        // Update Firebase if there's a change
+        if (hasChanged(statusKey, data.status) || hasChanged(textKey, data.text)) {
+            writeUserData(key, data.status, data.text);
+
+            // Update the last saved data
+            lastSavedData[statusKey] = data.status;
+            lastSavedData[textKey] = data.text;
+        }
+    }
+
+    alert('Valid status updates saved successfully!');
 }
 
-window.toggleDropdown = toggleDropdown;
-window.selectOption = selectOption;
-window.submitStatusUpdates = submitStatusUpdates;
+// Initialize lastSavedData on page load
+document.addEventListener('DOMContentLoaded', function () {
+    const initialStatusUpdates = {
+        realpage: {
+            status: document.getElementById('realpage-status').textContent,
+            text: document.getElementById('realpage-text').value
+        },
+        ticket: {
+            status: document.getElementById('ticket-status').textContent,
+            text: document.getElementById('ticket-text').value
+        },
+        outlook: {
+            status: document.getElementById('outlook-status').textContent,
+            text: document.getElementById('outlook-text').value
+        },
+        missionControl: {
+            status: document.getElementById('missionControl-status').textContent,
+            text: document.getElementById('missionControl-text').value
+        }
+    };
 
-// Add event listeners once the DOM is fully loaded
-document.addEventListener('DOMContentLoaded', function() {
+    // Store the initial values in lastSavedData
+    for (const [key, data] of Object.entries(initialStatusUpdates)) {
+        lastSavedData[`${key}Status`] = data.status;
+        lastSavedData[`${key}Text`] = data.text;
+    }
+
     // Attach event listener to all dropdown buttons
     const dropdownButtons = document.querySelectorAll('.dropbtn');
     dropdownButtons.forEach(button => {
@@ -64,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Attach event listener to all dropdown options
     const dropdownOptions = document.querySelectorAll('.dropdown-content .option');
     dropdownOptions.forEach(option => {
-        option.addEventListener('click', function() {
+        option.addEventListener('click', function () {
             const statusId = option.closest('.grid-item').querySelector('.dropbtn').id;
             selectOption(option, statusId);
         });
