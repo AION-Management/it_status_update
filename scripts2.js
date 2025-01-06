@@ -52,9 +52,9 @@ function submitStatusUpdates(event) {
             status: document.getElementById('outlook-status').textContent,
             text: document.getElementById('outlook-text').value
         },
-        ticket: {
-            status: document.getElementById('ticket-status').textContent,
-            text: document.getElementById('ticket-text').value
+        missionControl: {
+            status: document.getElementById('mc-status').textContent,
+            text: document.getElementById('mc-text').value
         }
     };
 
@@ -86,10 +86,6 @@ function submitStatusUpdates(event) {
     alert('Valid status updates saved successfully!');
 }
 
-
-
-
-
 // Initialize lastSavedData on page load
 document.addEventListener('DOMContentLoaded', function () {
     const initialStatusUpdates = {
@@ -105,9 +101,9 @@ document.addEventListener('DOMContentLoaded', function () {
             status: document.getElementById('outlook-status').textContent,
             text: document.getElementById('outlook-text').value
         },
-        ticket: {
-            status: document.getElementById('ticket-status').textContent,
-            text: document.getElementById('ticket-text').value
+        missionControl: {
+            status: document.getElementById('mc-status').textContent,
+            text: document.getElementById('mc-text').value
         }
     };
 
