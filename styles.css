@@ -27,6 +27,12 @@ header {
     text-align: center;
 }
 
+.ts-image {
+    width: 150px;
+    height: 100px;
+    text-align: center;
+}
+
 .outlook-image {
     width: 100px;
     height: 100px;
