@@ -175,4 +175,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // Attach event listener to the submit button
     const submitButton = document.querySelector('.update-btn');
     submitButton.addEventListener('click', submitStatusUpdates);
+
+    populateExistingData();
 });
