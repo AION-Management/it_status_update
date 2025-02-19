@@ -10,17 +10,18 @@ function populateExistingData() {
     // Fetch data for each application
     apps.forEach(app => {
         getStatusUpdates(app, (data) => {
-            if (data) {
-                // Update status button
-                const button = document.querySelector(`#${app}-status`).closest('.dropbtn');
+            // Get the button and text field elements
+            const button = document.querySelector(`#${app}-status`).closest('.dropbtn');
+            const textField = document.getElementById(`${app}-text`);
+            
+            if (data && data.status && data.text) {
+                // Update status button if data exists
                 if (button) {
                     button.textContent = data.status;
-                    // Set appropriate color class based on status
                     button.className = `dropbtn ${getStatusClass(data.status)}`;
                 }
                 
-                // Update text field
-                const textField = document.getElementById(`${app}-text`);
+                // Update text field if data exists
                 if (textField) {
                     textField.value = data.text;
                 }
@@ -28,6 +29,20 @@ function populateExistingData() {
                 // Update lastSavedData
                 lastSavedData[`${app}Status`] = data.status;
                 lastSavedData[`${app}Text`] = data.text;
+            } else {
+                // Set default values if data is undefined or incomplete
+                if (button) {
+                    button.textContent = 'Select a Status';
+                    button.className = 'dropbtn';
+                }
+                
+                if (textField) {
+                    textField.value = '';
+                }
+
+                // Set default values in lastSavedData
+                lastSavedData[`${app}Status`] = 'Select a Status';
+                lastSavedData[`${app}Text`] = '';
             }
         });
     });
@@ -36,9 +51,9 @@ function populateExistingData() {
 // Helper function to get the appropriate CSS class for a status
 function getStatusClass(status) {
     const statusMap = {
-        'Working': 'green-status',
-        'Issues': 'yellow-status',
-        'Down': 'red-status'
+        'Green': 'green-status',
+        'Yellow': 'yellow-status',
+        'Red': 'red-status'
     };
     return statusMap[status] || '';
 }
@@ -130,7 +145,6 @@ function submitStatusUpdates(event) {
 
 // Initialize lastSavedData on page load
 document.addEventListener('DOMContentLoaded', function () {
-    populateExistingData();
 
     const initialStatusUpdates = {
         realpage: {
