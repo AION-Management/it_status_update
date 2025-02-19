@@ -1,7 +1,48 @@
-import { writeUserData } from "./firebaseService.js";
+import { writeUserData, getStatusUpdates } from "./firebaseService.js";
 
 // Object to track the last saved data
 const lastSavedData = {};
+
+function populateExistingData() {
+    // Array of all applications
+    const apps = ['realpage', 'ticket', 'outlook', 'missionControl'];
+    
+    // Fetch data for each application
+    apps.forEach(app => {
+        getStatusUpdates(app, (data) => {
+            if (data) {
+                // Update status button
+                const button = document.querySelector(`#${app}-status`).closest('.dropbtn');
+                if (button) {
+                    button.textContent = data.status;
+                    // Set appropriate color class based on status
+                    button.className = `dropbtn ${getStatusClass(data.status)}`;
+                }
+                
+                // Update text field
+                const textField = document.getElementById(`${app}-text`);
+                if (textField) {
+                    textField.value = data.text;
+                }
+
+                // Update lastSavedData
+                lastSavedData[`${app}Status`] = data.status;
+                lastSavedData[`${app}Text`] = data.text;
+            }
+        });
+    });
+}
+
+// Helper function to get the appropriate CSS class for a status
+function getStatusClass(status) {
+    const statusMap = {
+        'Working': 'green-status',
+        'Issues': 'yellow-status',
+        'Down': 'red-status'
+    };
+    return statusMap[status] || '';
+}
+
 
 // Function to check if a value has changed
 function hasChanged(key, newValue) {
@@ -86,8 +127,11 @@ function submitStatusUpdates(event) {
     alert('Valid status updates saved successfully!');
 }
 
+
 // Initialize lastSavedData on page load
 document.addEventListener('DOMContentLoaded', function () {
+    populateExistingData();
+
     const initialStatusUpdates = {
         realpage: {
             status: document.getElementById('realpage-status').textContent,
