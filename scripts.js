@@ -14,7 +14,7 @@ function populateExistingData() {
             const button = document.querySelector(`#${app}-status`).closest('.dropbtn');
             const textField = document.getElementById(`${app}-text`);
             
-            if (data && data.status && data.text) {
+            if (data && data.status && data.errormsg) {  // Changed from data.text to data.errormsg
                 // Update status button if data exists
                 if (button) {
                     button.textContent = data.status;
@@ -23,12 +23,12 @@ function populateExistingData() {
                 
                 // Update text field if data exists
                 if (textField) {
-                    textField.value = data.text;
+                    textField.value = data.errormsg;  // Changed from data.text to data.errormsg
                 }
 
                 // Update lastSavedData
                 lastSavedData[`${app}Status`] = data.status;
-                lastSavedData[`${app}Text`] = data.text;
+                lastSavedData[`${app}Text`] = data.errormsg;  // Changed from data.text to data.errormsg
             } else {
                 // Set default values if data is undefined or incomplete
                 if (button) {
@@ -145,32 +145,6 @@ function submitStatusUpdates(event) {
 
 // Initialize lastSavedData on page load
 document.addEventListener('DOMContentLoaded', function () {
-
-    const initialStatusUpdates = {
-        realpage: {
-            status: document.getElementById('realpage-status').textContent,
-            text: document.getElementById('realpage-text').value
-        },
-        ticket: {
-            status: document.getElementById('ticket-status').textContent,
-            text: document.getElementById('ticket-text').value
-        },
-        outlook: {
-            status: document.getElementById('outlook-status').textContent,
-            text: document.getElementById('outlook-text').value
-        },
-        missionControl: {
-            status: document.getElementById('missionControl-status').textContent,
-            text: document.getElementById('missionControl-text').value
-        }
-    };
-
-    // Store the initial values in lastSavedData
-    for (const [key, data] of Object.entries(initialStatusUpdates)) {
-        lastSavedData[`${key}Status`] = data.status;
-        lastSavedData[`${key}Text`] = data.text;
-    }
-
     // Attach event listener to all dropdown buttons
     const dropdownButtons = document.querySelectorAll('.dropbtn');
     dropdownButtons.forEach(button => {
@@ -190,5 +164,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const submitButton = document.querySelector('.update-btn');
     submitButton.addEventListener('click', submitStatusUpdates);
 
+    // Call populateExistingData last to ensure it overwrites any default values
     populateExistingData();
 });
