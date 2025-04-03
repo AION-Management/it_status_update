@@ -118,7 +118,7 @@ function submitStatusUpdates(event) {
     for (const [key, data] of Object.entries(statusUpdates)) {
         const statusKey = `${key}Status`;
         const textKey = `${key}Text`;
-
+        const button = document.getElementById(`${key}-status`).closest('.dropbtn');
         // Validation: Prevent "Select a Status" or empty messages from being saved
         if (data.status === "Select a Status") {
             alert(`Please select a valid status for ${key}.`);
@@ -136,6 +136,11 @@ function submitStatusUpdates(event) {
             // Update the last saved data
             lastSavedData[statusKey] = data.status;
             lastSavedData[textKey] = data.text;
+
+            // Ensure the button maintains its color class
+            if (button) {
+                button.className = `dropbtn ${getStatusClass(data.status)}`;
+            }
         }
     }
 
